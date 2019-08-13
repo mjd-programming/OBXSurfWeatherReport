@@ -1,7 +1,7 @@
 from tkinter import *
 from collections import namedtuple
 
-obx_location_object = namedtuple('obx_location_object', ('name, temperature, wave_height'))
+obx_location_object = namedtuple('obx_location_object', ['name', 'temperature', 'wave_height'])
 
 class obx_window():
     def __init__(self, height_surf):
@@ -12,6 +12,7 @@ class obx_window():
         self.report_variable = StringVar()
         self.ideal_weather_variable = StringVar()
         self.height_surf = height_surf
+        self.location_objects = [obx_location_object(location[0], location[2], location[1]) for location in self.height_surf]
         self.create_window()
         self.running = True
         while self.running:
