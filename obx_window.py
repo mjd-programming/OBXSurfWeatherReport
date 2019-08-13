@@ -4,13 +4,14 @@ from collections import namedtuple
 obx_location_object = namedtuple('obx_location_object', ('name, temperature, wave_height'))
 
 class obx_window():
-    def __init__(self):
+    def __init__(self, height_surf):
         self.window = Tk()
         self.window.title('OBX')
         self.window.resizable(False, False)
         self.slider_variable = IntVar()
         self.report_variable = StringVar()
         self.ideal_weather_variable = StringVar()
+        self.height_surf = height_surf
         self.create_window()
         self.running = True
         while self.running:
@@ -34,14 +35,7 @@ class obx_window():
         obx_slider = Scale(self.window, from_=0, to=100, showvalue=0, orient=HORIZONTAL, sliderlength=20, resolution=25, variable=self.slider_variable).grid(row=2, column=1)
 
     def obx_update(self):
-        locations = [obx_location_object('lmao', self.ideal_weather_variable.get(), i) for i in range(int(self.slider_variable.get()/25))]
-        report_string = ''
-        for location in locations:
-            report_string += self.get_obx_list_object(location.name, location.temperature, location.wave_height, 1)
-            for i in range(38):
-                report_string += '_'
-            report_string += '\n'
-        self.report_variable.set(report_string)
+        self.report_variable.set(self.height_surf)
 
     def get_obx_list_object(self, name, temp, wave_height, rank):
         r_string = ''
@@ -50,5 +44,3 @@ class obx_window():
         r_string += 'Temperature: %s%cF\n' % (str(temp), 186)
         r_string += 'Wave Height: %sft\n' % str(wave_height)
         return r_string
-
-my_window = obx_window()

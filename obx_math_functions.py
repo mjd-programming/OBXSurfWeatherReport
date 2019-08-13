@@ -9,3 +9,6 @@ def get_average_temperature(temps):
     for temp in temps:
         temp_temps.append(temp)
     return sum(temp_temps)/len(temp_temps)
+
+def get_ordered_list(obx_list):
+    o_list = []
