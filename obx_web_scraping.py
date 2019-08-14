@@ -2,7 +2,7 @@ import bs4
 import requests
 import re
 
-locations = ["nags-head-pier", "Avon", "Kitty hawk", "Corolla", "Rodanthe", "Ocrecok", "duck", "Cape Hatteras"]
+locations = ["Nags Head Pier", "Avon", "Kitty Hawk", "Corolla", "Rodanthe", "Ocrecok", "Duck", "Cape Hatteras"]
 
 
 def get_soup(site):
@@ -66,9 +66,6 @@ def gov_weather():
     return temps
 
 def get_height_surf():
-    print('starting...')
     surf = surfline_reports()
-    print('processing...')
     gov = gov_weather()
-    print('complete.')
     return averages(surf, gov)
