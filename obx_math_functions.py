@@ -1,5 +1,7 @@
 import obx_web_scraping as obx_web
 
+multiply_percents = [(100-(i*25), i*25) for i in range(5)]
+
 def get_average_wave_height(wave_heights):
     temp_waves = []
     for wave in wave_heights:
@@ -15,3 +17,4 @@ def get_average_temperature(temps):
 def get_ordered_list(obx_list):
     o_list = [(obx_web.locations[i], obx_list[i][1], obx_list[i][0]) for i in range(len(obx_list))]
     return o_list
+
